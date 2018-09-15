@@ -17,7 +17,6 @@ class ToDayScreen extends StatefulWidget {
 
 class _ToDayScreen extends State<ToDayScreen> {
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -105,28 +104,30 @@ class _ToDayScreen extends State<ToDayScreen> {
                   }
                 }),
           ),
-//          Expanded(
-//            child: Container(
-//              child: Padding(
-//                padding: const EdgeInsets.all(20.0),
-//                child: FutureBuilder<List<Weather>>(
-//                  future: new WeatherRemoteRepository().getForecast(widget.city),
-//                  builder: (context, snapshot) {
-//                    if (snapshot.hasData) {
-//                      return new ListView.builder(
-//                          scrollDirection: Axis.horizontal,
-//                          itemCount: snapshot.data.length,
-//                          itemBuilder: (BuildContext context, int index) {
-//                            return getCard(snapshot.data[index]);
-//                          });
-//                    } else {
-//                      return Center(child: new CircularProgressIndicator());
-//                    }
-//                  },
-//                ),
-//              ),
-//            ),
-//          ),
+          Expanded(
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+
+                child: FutureBuilder<List<Weather>>(
+                  future: new WeatherRemoteRepository().getForecast(widget.city),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+
+                      return new ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return getCard(snapshot.data[index]);
+                          });
+                    } else {
+                      return Center(child: new CircularProgressIndicator());
+                    }
+                  },
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -134,8 +135,11 @@ class _ToDayScreen extends State<ToDayScreen> {
 }
 
 getCard(Weather _weather) {
+
   print(_weather.toString());
+
   return Container(
+
     padding: const EdgeInsets.all(12.0),
     child: Column(
       mainAxisSize: MainAxisSize.max,

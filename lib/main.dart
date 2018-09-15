@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather/ToDayScreen.dart';
+import 'package:flutter_weather/WeekForecast.dart';
 
 void main() => runApp(new MyApp());
 
@@ -83,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             child: new TabBarView(children: <Widget>[
               new ToDayScreen(city: city),
-//              new WeekForecast(city: city,),
+              new WeekForecast(city: city,),
             ]),
           )
       ),

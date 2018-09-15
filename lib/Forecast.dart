@@ -1,6 +1,50 @@
-class Forecast{
+import 'package:intl/intl.dart';
+
+class Forecast {
+  final int id;
+  final String day;
+  final String night;
+  final String main;
+  final String description;
+  final String pressure;
+  final String humidity;
+  final String min;
+  final String max;
+  final DateTime date;
+
+  var formatterDate = new DateFormat('yyyy-MM-dd ');
+  var formatterHour = new DateFormat('HH:mm  ');
+
+  Forecast(this.id, this.day, this.night, this.main, this.description,
+      this.pressure, this.humidity, this.min, this.max, this.date);
+
+  factory Forecast.fromJson(Map<String, dynamic> json) {
+    int epochTimeMs = json["dt"] * 1000;
+    DateTime dateTime = new DateTime.fromMillisecondsSinceEpoch(epochTimeMs);
 
 
+    return Forecast(
+        json['weather'][0]['id'],
+        json['temp']['day'].toString(),
+        json['temp']['night'].toString(),
+        json['weather'][0]['main'].toString(),
+        json['weather'][0]['description'].toString(),
+        json['presuse'].toString(),
+        json['humidity'].toString(),
+        json['temp']['min'].toString(),
+        json['temp']['max'].toString(),
+        dateTime);
+  }
+
+  String getDate(){
+    return formatterDate.format(date);
+
+  }
+
+  String getTime(){
+    return formatterHour.format(date);
+
+  }
 
 
   String getIconResourceForWeatherCondition(int weatherId) {

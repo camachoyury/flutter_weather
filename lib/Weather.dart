@@ -23,7 +23,6 @@ class Weather {
     int epochTimeMs = json["dt"]*1000;
     DateTime dateTime = new DateTime.fromMillisecondsSinceEpoch(epochTimeMs);
 
-
     return  Weather(
         id: json['weather'][0]['id'],
         main: json['weather'][0]['main'].toString(),
@@ -40,10 +39,8 @@ class Weather {
 
   }
 
-
   String getDate(){
     return formatterDate.format(date);
-
   }
 
   String getTime(){
